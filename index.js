@@ -120,7 +120,7 @@ const choosePage = function (index) {
   pageWrapper.children[index].classList.add("page-selected");
 };
 
-setInterval(changeImg,1000)
+setInterval(changeImg,1000) 
 
 const info = document.querySelector(".info");
 
@@ -193,17 +193,20 @@ const accodionData = [
 
 const accordionContainer = document.querySelector('.accordion-container')
 
-function closeAllAccordions() {
+function closeAllAccordions(excludedBody) {
     const bodyList = document.querySelectorAll('.accordion-body')
     bodyList.forEach(body => {
-        body.classList.remove('accordion-body-open')
+        console.log(body === excludedBody)
+        if (body !== excludedBody) {
+            body.classList.remove('accordion-body-open')
+        }
     })
 }
 
 function openModalCallback(event) {
-    closeAllAccordions();
     const targetBody = event.target.getAttribute('targetBody')
     const body = document.querySelector('#' + targetBody)
+    closeAllAccordions(body);
     body.classList.toggle('accordion-body-open')
 }
 
